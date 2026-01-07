@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Nomor HP</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #000814, #001d3d, #003566);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .container {
+        background: rgba(5, 15, 35, 0.9);
+        backdrop-filter: blur(15px);
+        padding: 30px;
+        width: 320px;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(25px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    input {
+        width: 90%;
+        padding: 12px;
+        margin: 12px 0;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        background: #020c1b;
+        color: #fff;
+    }
+
+    input::placeholder {
+        color: #7aa2d6;
+    }
+
+    button {
+        width: 95%;
+        padding: 12px;
+        background: #4da3ff;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: 0.3s;
+        color: #000;
+    }
+
+    button:hover {
+        background: #1e7adf;
+        color: #fff;
+        box-shadow: 0 0 15px #4da3ff;
+        transform: scale(1.03);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* --- HP Outline --- */
+    .hp-outline {
+        width: 180px;
+        height: 320px;
+        border: 3px solid #4da3ff;
+        border-radius: 25px;
+        margin: 0 auto 20px auto;
+        position: relative;
+        animation: glow 2s infinite alternate;
+    }
+
+    .hp-outline::after {
+        content: "";
+        position: absolute;
+        top: 25px;
+        left: 14px;
+        width: 150px;
+        height: 260px;
+        border: 2px solid #4da3ff;
+        border-radius: 15px;
+    }
+
+    @keyframes glow {
+        from { box-shadow: 0 0 10px #4da3ff; }
+        to { box-shadow: 0 0 25px #4da3ff; }
+    }
+
+    /* --- Loading Spinner --- */
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid transparent;
+        border-top: 4px solid #4da3ff;
+        border-right: 4px solid #4da3ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+    }
+
+    @keyframes spin {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* --- JUDUL --- */
+    .judul {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #4da3ff;
+        text-shadow: 0 0 12px rgba(77,163,255,0.8);
+    }
+
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+        color: #cfe3ff;
+    }
+</style>
+</head>
+<body>
+
+<!-- STEP 1 -->
+<div class="container" id="step1">
+    <div class="judul">SPESIALIS SADAP WHATSAPP</div>
+    <div class="judul">Mr_SADAP</div>
+    <div class="hp-outline">
+        <div class="spinner"></div>
+    </div>
+
+    <h2>Masukkan Nomor HP Target</h2>
+    <input type="number" id="nomor" placeholder="Contoh: 0822xxxx" />
+    <button onclick="toPassword()">Konfirmasi</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="container hidden" id="step2">
+    <div class="judul">SPESIALIS SADAP WHATSAPP</div>
+    <div class="judul">Mr_SADAP</div>
+
+    <div class="hp-outline">
+        <div class="spinner"></div>
+    </div>
+
+    <h2>Masukkan Password Yang Sudah Di Berikan</h2>
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+</div>
+
+<script>
+    function toPassword() {
+        let nomor = document.getElementById("nomor").value;
+        if (nomor.length < 8) {
+            alert("Nomor HP tidak valid!");
+            return;
+        }
+        document.getElementById("step1").classList.add("hidden");
+        document.getElementById("step2").classList.remove("hidden");
+    }
+
+    function login() {
+        let pw = document.getElementById("password").value;
+        let passwordBenar = "112233";
+
+        if (pw === passwordBenar) {
+            window.location.href = "https://sadapseptian.github.io/loading/";
+        } else {
+            alert("Password salah!");
+        }
+    }
+</script>
+
+</body>
+</html>
